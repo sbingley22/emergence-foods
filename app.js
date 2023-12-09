@@ -4,17 +4,33 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const storeRouter = require('./routes/store');
 
 const config = require('./config');
 const databaseURL = config.DATABASE_URL;
 
 var app = express();
 
+//mongoose
+// Set up mongoose connection
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB = databaseURL;
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+const expressLayouts = require('express-ejs-layouts')
+app.use(expressLayouts);
+app.set('layout', 'mainTemplate');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/store', storeRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
