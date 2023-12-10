@@ -1,0 +1,7 @@
+<h1><%= title %></h1>
+
+<ul>
+    <% categories.map( cat => { %>
+        <li><a href="<%= cat.url %>"><%= cat.name %></a></li>
+    <% }) %>
+</ul>

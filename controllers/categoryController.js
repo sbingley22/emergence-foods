@@ -21,11 +21,25 @@ exports.index = asyncHandler(async (req, res, next) => {
   });
 
 exports.category_list = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented")
+    const categories = await Category.find().sort({name: 1}).exec()
+
+    res.render("categoryView", {
+        title: "All Categories",
+        categories: categories,
+    })
 })
 
 exports.category_detail = asyncHandler(async (req, res, next) => {
-    res.send(`Not implemented: Detail ${req.params.id}`)
+    const [category, foods] = await Promise.all([
+        Category.findById(req.params.id).exec(), 
+        Food.find({category: req.params.id}).sort({name: 1}).exec()
+    ]);
+
+    res.render("categoryDetail", {
+        title: "Category",
+        category: category,
+        foods: foods,
+    })
 })
 
 exports.category_create_get = asyncHandler(async (req, res, next) => {

@@ -1,0 +1,7 @@
+<h1><%= category.name %></h1>
+
+<ul>
+    <% foods.map( food => { %>
+        <li><a href="<%= food.url %>"><%= food.name %></a></li>
+    <% }) %>
+</ul>
