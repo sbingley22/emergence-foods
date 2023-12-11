@@ -8,8 +8,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const storeRouter = require('./routes/store');
 
-const config = require('./config');
-const databaseURL = config.DATABASE_URL;
+//const config = require('./config');
+//const databaseURL = config.DATABASE_URL;
+const databaseURL = process.env.DATABASE_URL
 
 var app = express();
 
