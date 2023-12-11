@@ -1,0 +1,11 @@
+<h1><%= title %> : <%= food.name %></h1>
+
+<p>Do you really want to delete this Food?</p>
+
+<form action="" method="POST">
+    <div class="form-group">
+        <input type="hidden" id="foodid" class="form-control" name="foodid" required="true" value="<%= food._id %>">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Delete</button>
+</form>
