@@ -1,0 +1,23 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+    <div>
+        <label for="name">New category name: </label>
+        <input 
+            type="text" 
+            id="name"
+            name="name"
+            required
+            value="<%= category ? category.name : '' %>" 
+        />
+    </div>
+    <button type="submit">submit</button>
+</form>
+
+<% if (errors) { %>
+    <ul>
+        <% errors.map( (error) => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>

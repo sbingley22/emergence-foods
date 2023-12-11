@@ -1,9 +1,7 @@
-<h1><%= category.name %></h1>
+<h1><%= title %></h1>
 
 <ul>
     <% foods.map( food => { %>
         <li><a href="<%= food.url %>"><%= food.name %></a></li>
     <% }) %>
 </ul>
-
-<p><a href="<%= category.url+'/delete' %>">Delete this category</a></p>

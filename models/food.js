@@ -15,5 +15,14 @@ FoodSchema.virtual("url").get(function () {
   return `/store/food/${this._id}`;
 });
 
+// Format sell_by_date to display only day, month, and year
+FoodSchema.virtual("formatted_sell_by_date").get(function () {
+  return this.sell_by_date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+});
+
 // Export model
 module.exports = mongoose.model("Food", FoodSchema);

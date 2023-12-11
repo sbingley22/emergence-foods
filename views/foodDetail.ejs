@@ -1,0 +1,11 @@
+<h1><%= food.name %></h1>
+
+<p><strong>Items left: </strong><%= food.items_left %></p>
+
+<p><strong>Sell by date: </strong><%= food.formatted_sell_by_date %></p>
+
+<ul>
+    <% categories.map( category => { %>
+        <li><a href="<%= category.url %>"><%= category.name %></a></li>
+    <% }) %>
+</ul>
